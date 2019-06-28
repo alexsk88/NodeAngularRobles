@@ -9,6 +9,8 @@
         // Activa el Framework
 
 // Cargas archivos de Rutas
+    var user_routes = require('./routes/user');
+
 
 // Cargar Midleware
     app.use(bodyParser.urlencoded({extended:false}));
@@ -22,6 +24,7 @@
 
 // Reescribir Rutas
 
+    /*
     app.get('/', (request, response)=>{
          // Tiene dos funciones de Callback 
          // La request es lo que envio 
@@ -31,7 +34,10 @@
              messague: "Hola Marte desde el back-end con NODE",
              nombre: "Alexnder Nova"
          });
-    });
+    });*/
+
+    app.use('/api',user_routes);
+    // Añade la palabra /api antes de routes
 
 // Exportar el modulo
     module.exports = app;
