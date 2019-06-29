@@ -1,18 +1,26 @@
 'use strict'
 
 // Cargar librerias
+
     var express = require('express');
     var bodyParser = require('body-parser');
 
+
 // Ejecutar Expreess
+
     var app = express();
         // Activa el Framework
 
+
+
 // Cargas archivos de Rutas
+
     var user_routes = require('./routes/user');
 
 
+
 // Cargar Midleware
+
     app.use(bodyParser.urlencoded({extended:false}));
         // Configuracion para parsear datos
 
@@ -21,6 +29,8 @@
 
 
 // Configurar CORs, para acceso cruzado entre dominios
+
+
 
 // Reescribir Rutas
 
@@ -39,5 +49,7 @@
     app.use('/api',user_routes);
     // Añade la palabra /api antes de routes
 
+
 // Exportar el modulo
+
     module.exports = app;
