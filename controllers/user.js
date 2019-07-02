@@ -216,6 +216,13 @@ var controller =
             
             }
             
+    },
+
+    update: function (request, response)
+    {
+        return response.status(200).send({
+            messague: "Esto sirve obvio que servira"
+        });
     }
 };
 
