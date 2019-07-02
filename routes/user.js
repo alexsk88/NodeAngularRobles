@@ -15,6 +15,7 @@ router.post('/probando', userController.testeando);
 // Rutas de Usuario
 
 router.post('/register', userController.save);
+router.post('/login', userController.login);
 
 
 module.exports = router;
