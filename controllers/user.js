@@ -4,7 +4,7 @@
 var validator = require('validator');
 var User = require('../models/user');
 var bcryp = require('bcrypt');
-var jwt = require('jwt-simple');
+var jwt = require('../services/jwt');
 
 // Como una clase
 
@@ -145,7 +145,8 @@ var controller =
                     if(error)
                     {
                         return response.status(500).send({
-                            message: "Error Con el Servidor"
+                            message: "Error Con el Servidor",
+                            type: "Buscando Usuario en MongoDB"
                         });
                     }
 
@@ -165,24 +166,39 @@ var controller =
                         bcryp.compare(params.password, issetuser.password, function(err, res) {
                             if(err)
                             {
-                                response.status(500).send({
-                                    message: "Error del servidor"
+                                return response.status(500).send({
+                                    message: "Error del servidor",
+                                    type: "Comparando bcrypt"
                                 });
                             }
                             if(res)
                             {
-                                response.status(500).send({
-                                    message: "La contraseña coincide",
-                                });
-                                
+                                // Limpiar el objeto 
+
+                                issetuser.password = undefined;
+                                // issetuser.__v = undefined;
+
 
                                 // Generar token de JWT
 
-                                // Si todo es correcto, devolver datos
+                                if (params.getToken)
+                                {
+                                    return response.status(200).send({
+                                        token: jwt.createtoken(issetuser)
+                                    });
+                                }
+                                else
+                                {
+                                    return response.status(200).send({
+                                        message: "success",
+                                        user: issetuser
+                                    });
+                                }
+                                
                             }
                             else
                             {
-                                response.status(500).send({
+                                return response.status(400).send({
                                     message: "La contraseña NOO coincide",
                                 });
                             }
@@ -191,7 +207,7 @@ var controller =
                     }
                     else
                     {
-                        response.status(200).send({
+                        return response.status(404).send({
                             message: "Usuario No encontrado"
                         });
                     }
