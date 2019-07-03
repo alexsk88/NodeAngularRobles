@@ -29,13 +29,20 @@ var controller =
         var params = request.body;
 
         // Validar los datos
-
-        var validate_name = !validator.isEmpty(params.name);
-        var validate_surname = !validator.isEmpty(params.surname);
-        var validate_email = !validator.isEmpty(params.email) && validator.isEmail(params.email);
-        var validate_password = !validator.isEmpty(params.password);
-
-
+        try
+        {
+            var validate_name = !validator.isEmpty(params.name);
+            var validate_surname = !validator.isEmpty(params.surname);
+            var validate_email = !validator.isEmpty(params.email) && validator.isEmail(params.email);
+            var validate_password = !validator.isEmpty(params.password);
+        }
+        catch(error)
+        {
+            return response.status(400).send({
+                messague: "No se ha enviado dato/s"
+            });
+        }
+        
         // console.log(validate_name,
         //     validate_surname,
         //     validate_email,
@@ -128,13 +135,23 @@ var controller =
         var params = request.body;
 
         // Validar los datos
-        var validate_email = !validator.isEmpty(params.email) && validator.isEmail(params.email);
-        var validate_password = !validator.isEmpty(params.password);
+
+        try
+        {
+            var validate_password = !validator.isEmpty(params.password);
+            var validate_email = !validator.isEmpty(params.email) && validator.isEmail(params.email);
+        }
+        catch(error)
+        {
+            return response.status(400).send({
+                messague: "Campos sin rellenar"
+            });
+        }
 
         if(!validate_email || !validate_password)
             {
                 return response.status(400).send({
-                    messague: "Los datos no son validos"
+                    messague: "No se ha enviado dato/s"
                 });
             }
             else
@@ -220,11 +237,60 @@ var controller =
 
     update: function (request, response)
     {
+        
         // Crear midleware, para comprobar el usuario
 
-        //me
-        return response.status(200).send({
-            messague: "Esto sirve obvio que servira"
+        /* AL CRUZAR LA REQUEST POR EL MIDLE SE AÑADE UNA PROPIEDAD LLAMADA USER OJO OJO OJO*/
+        // Recoger datos del usuario
+        var update_params= request.body;
+
+        // Validar Datos
+        try
+        {
+            var validate_name = !validator.isEmpty(update_params.name);
+            var validate_surname = !validator.isEmpty(update_params.surname);
+            var validate_email = !validator.isEmpty(update_params.email) && validator
+                                           .isEmail(update_params.email);
+        }
+        catch(error)
+        {
+            return response.status(400).send({
+                messague: "No se ha enviado dato/s"
+            });
+        }
+
+        // Eliminar propiedades inncesarias
+        delete update_params.password;
+
+        // Buscar y actualizar Documento
+
+        var userId = request.user.sub;
+        // console.log(userId);
+        
+
+        // User.findOneAndUpdate(condicion, datos a actualizar, opcion, callback)
+        // {new: true} => devuelve los datos ya actualizados ¿, no los viejos 
+        User.findOneAndUpdate({_id: userId}, update_params, {new: true},(err, UserUpdated)=>{
+            if(err)
+            {
+                return response.status(500).send({
+                    message: 'Error con el servidor',
+                    error: err,
+                    type: 'Buscar y Actualizar'
+                });
+            }
+
+            if(!UserUpdated)
+            {
+                return response.status(400).send({
+                    message: 'Error al Actualizar el User'
+                });
+            }
+
+            return response.status(200).send({
+                status: 'Success',
+                UserUpdated
+            });
         });
     }
 };

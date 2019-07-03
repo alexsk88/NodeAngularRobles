@@ -30,15 +30,11 @@ exports.auth = function (request, response, next)
         // remplacelo por nada
 
         // Decodificar el Token
-            // Procesos que generar a veces errorer then utilizamos trucatch
-
-
-            
+            // Procesos que generar a veces errorer then utilizamos try catch
 
             // console.log(momment().get('date'));
             //console.log(payload);
             
-           
             try 
             {
                 var payload = jwt.decode(cleanToken, key);

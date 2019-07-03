@@ -13,6 +13,7 @@ var port = process.env.PORT || 3999;
 
 mongoose.Promise = global.Promise;
 // Le digo a moongose que utlize promesas
+mongoose.set('useFindAndModify', false);
 
 mongoose.connect('mongodb://localhost:27017/api-rest-node', {useNewUrlParser: true})
         .then(()=>{
