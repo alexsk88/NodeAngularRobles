@@ -220,6 +220,9 @@ var controller =
 
     update: function (request, response)
     {
+        // Crear midleware, para comprobar el usuario
+
+        //me
         return response.status(200).send({
             messague: "Esto sirve obvio que servira"
         });

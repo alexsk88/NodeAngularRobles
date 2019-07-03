@@ -23,6 +23,8 @@ mongoose.connect('mongodb://localhost:27017/api-rest-node', {useNewUrlParser: tr
             app.listen(port, ()=>
             {
                 console.log("The Server http://localhost:3999 esta funcionando");
+                console.log(" ");
+                console.log(" ");
             });
 
         }).catch(errro=> console.log("Aui error", error));

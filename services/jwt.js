@@ -14,8 +14,8 @@ exports.createtoken = function(user)
         email: user.email,
         role: user.role,
         image: user.image,
-        iat: momment().unix(),
-        exp: momment().add(30, 'days').unix
+        iat: momment(),
+        exp: momment().add(1, 'days')
     };
     // Todos los datos de usuario  
 
