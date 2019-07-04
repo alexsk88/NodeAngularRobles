@@ -5,6 +5,10 @@ var validator = require('validator');
 var User = require('../models/user');
 var bcryp = require('bcrypt');
 var jwt = require('../services/jwt');
+// Esta libreria me permite trabajar con ficheros
+
+var fs = require('fs');
+var path = require('path');
 
 // Como una clase
 
@@ -359,28 +363,60 @@ var controller =
                 var ext_split = file_name.split('\.'); // Escapese solo el punto
                 var ext = ext_split[1];
 
+                // Vamos a comprobar extension (solo imagenes)
+                if (ext != 'jpg' && ext != 'png' && ext != 'jpeg' && ext != 'gif')
+                {
+                    fs.unlink(file_path, (error)=>{
+                        if(error)
+                        {
+                            return response.status(500).send({
+                                message: 'Error de servidor',
+                                type: 'Error al borarr file'
+                            });
+                        }
+                        console.log('Muy fast');
+                        
+                    });
 
+                    return response.status(400).send({
+                        status: 'error',
+                        messague: 'El archivo no es una imagen ('+ '.'+ext+')'
+                    });
+                    // Si no es valido borrar fichero subido
+                    
+                }
+                else
+                {
+                    // Sacar el ID del usuario identificado
 
-            // Si no es valido borrar fichero subido
-
-            // Vamos a comprobar extension (solo imagenes)
-
-            // Sacar el ID del usuario identificado
-
-            // Hacer el Update en MogoDB
-
-            // Devolver una respustes
-            return response.status(200).send({
-                status: 'Avatar subido correctamente',
-                name: file_path,
-                p: file_split[0],
-                pdos: file_split[1],
-                ptres: file_split[2],
-                pcu: file_split[3],
-            });
+                    var Userid = request.user.sub;
+                    // Hacer el Update en MogoDB
+                    
+                    User.findOneAndUpdate({_id: Userid}, {image: file_name},{new: true},(err, user)=>{
+                        // file_name : Name de la imagen que quedo en el servidor
+                        // Yo pensaba que era el name original de la img
+                        if(err)
+                        {
+                            return response.status(500).send({
+                                message: 'Error servidor',
+                                type: 'Erro al update Avatar user Mongo'
+                            });
+                        }
+                        // Devolver una respustes
+              
+                        return response.status(200).send({
+                            status: 'success',
+                            messague: 'El archivo se subio',
+                            user
+                        });
+                    });
+                    
+                }
         }
 
     },
+
+
 };
 
 module.exports = controller;
