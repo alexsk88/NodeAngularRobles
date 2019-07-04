@@ -38,5 +38,7 @@ router.put('/update',md_auth.auth, userController.update);
 // Asi se solicitan parametros por URL
 router.post('/upload-avatar',md_auth.auth, md_upload, userController.uploadAvatar);
 
+router.get('/avatar/:filename', userController.avatar);
+
 
 module.exports = router;

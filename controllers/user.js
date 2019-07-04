@@ -416,7 +416,31 @@ var controller =
 
     },
 
+    avatar: function(request, response)
+    {
+        var fileName = request.params.filename;
+        // Obtiene los parametros y coge la variable filename
 
+        var pathFile = './uploads/users/'+ fileName;
+        
+        console.log(pathFile);
+        
+
+        fs.exists(pathFile, (exists)=>{
+            // Si exisst da true
+            // Comprueba si la imagen
+            if(exists)
+            {
+                return response.sendFile(path.resolve(pathFile));
+            }
+            else
+            {
+                return response.status(404).send({
+                    messague: 'La imagen no existe',
+                });
+            }
+        }); 
+    }
 };
 
 module.exports = controller;
