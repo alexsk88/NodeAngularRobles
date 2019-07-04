@@ -22,12 +22,15 @@ router.post('/probando', userController.testeando);
 router.post('/register', userController.save);
 router.post('/login', userController.login);
 
-// Estas rutas se complentas como una escalera
+// Estas rutas se complentan como una escalera
 // Primero ejecuta md_auth.auth
 // Segundo user.controller
 // y si hubiera otro tambien lo hacia y asi
 // NODE es mas breve y bonito
 router.put('/update',md_auth.auth, userController.update);
+
+// Asi se solicitan parametros por URL
+router.post('/upload-avatar/:id', userController.uploadAvatar);
 
 
 module.exports = router;

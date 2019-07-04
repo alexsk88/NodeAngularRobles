@@ -321,7 +321,32 @@ var controller =
                 });
             });
         }    
-    }
+    },
+
+    uploadAvatar: function (request, response)
+    {
+
+        // Configurar el modulo multiparty -> Para subir ficheros
+
+        // Recoger el fichero de la peticion
+
+        // Conseguir el nombre y la extension de Archivo subido
+            // Si no es valido borrar fichero subido
+
+        // Vamos a comprobar extension (solo imagenes)
+
+        // Sacar el ID del usuario identificado
+
+        // Hacer el Update en MogoDB
+
+        // Devolver una respustes
+
+
+
+        return response.status(200).send({
+            status: 'Upload Listo',
+        });
+    },
 };
 
 module.exports = controller;
