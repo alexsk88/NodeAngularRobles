@@ -6,8 +6,14 @@ var userController = require('../controllers/user');
 // Cargar Routing de Express
 var router = express.Router();
 
-// Cargar Middleware
+// Cargar Middlewares
 var md_auth = require('../middlewares/auth');
+
+// Habilita que se puedan subir ficheros, no solo texto
+// como es lo convensional
+var multiparty = require('connect-multiparty');
+
+var md_upload = multiparty({uploadDir: './uploads/users'});
 
 
 // Rutas de Pruebas
@@ -30,7 +36,7 @@ router.post('/login', userController.login);
 router.put('/update',md_auth.auth, userController.update);
 
 // Asi se solicitan parametros por URL
-router.post('/upload-avatar/:id', userController.uploadAvatar);
+router.post('/upload-avatar',md_auth.auth, md_upload, userController.uploadAvatar);
 
 
 module.exports = router;

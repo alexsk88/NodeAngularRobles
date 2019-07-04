@@ -327,25 +327,59 @@ var controller =
     {
 
         // Configurar el modulo multiparty -> Para subir ficheros
+            // Midleware- que esta en routes
 
         // Recoger el fichero de la peticion
 
-        // Conseguir el nombre y la extension de Archivo subido
+        var file_name = 'Avatar  no subido...';
+
+        //console.log(request.files);
+        
+        if(!request.files)
+        {
+            return response.status(404).send({
+                status: file_name,
+            });
+        }
+        else
+        {
+            // Conseguir el nombre y la extension de Archivo subido
+                var file_path = request.files.file0.path;
+                var file_split = file_path.split('\\');
+
+                //"folderprincipall": "uploads", pos 0
+                //"subfolder": "users",          pos 1
+                //"nombre_imagen": "imgsd4.jpg"  pos 2
+
+                /* En linux y MAC seria */
+                //var file_split = file_path.split('/');
+
+
+                var file_name = file_split[2];
+                var ext_split = file_name.split('\.'); // Escapese solo el punto
+                var ext = ext_split[1];
+
+
+
             // Si no es valido borrar fichero subido
 
-        // Vamos a comprobar extension (solo imagenes)
+            // Vamos a comprobar extension (solo imagenes)
 
-        // Sacar el ID del usuario identificado
+            // Sacar el ID del usuario identificado
 
-        // Hacer el Update en MogoDB
+            // Hacer el Update en MogoDB
 
-        // Devolver una respustes
+            // Devolver una respustes
+            return response.status(200).send({
+                status: 'Avatar subido correctamente',
+                name: file_path,
+                p: file_split[0],
+                pdos: file_split[1],
+                ptres: file_split[2],
+                pcu: file_split[3],
+            });
+        }
 
-
-
-        return response.status(200).send({
-            status: 'Upload Listo',
-        });
     },
 };
 
