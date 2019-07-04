@@ -28,4 +28,4 @@ mongoose.connect('mongodb://localhost:27017/api-rest-node', {useNewUrlParser: tr
                 console.log(" ");
             });
 
-        }).catch(errro=> console.log("Aui error", error));
+        }).catch(error=> console.log("Aui error", error));
