@@ -40,5 +40,8 @@ router.post('/upload-avatar',md_auth.auth, md_upload, userController.uploadAvata
 
 router.get('/avatar/:filename', userController.avatar);
 
+router.get('/user/:id', userController.getUser);
+router.get('/users', userController.getUsers);
+
 
 module.exports = router;

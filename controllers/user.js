@@ -440,6 +440,58 @@ var controller =
                 });
             }
         }); 
+    },
+
+    getUsers: function(request, response)
+    {
+        User.find((err, users)=>{
+            if(err)
+            {
+                return response.status(500).send({
+                    message: 'Error con el servidor',
+                    type: 'Error al sacar User con MongoDB'
+                });
+            }
+            else
+            {
+                return response.status(200).send({
+                    message: 'success',
+                    users
+                });
+            }
+            
+        });
+    },
+
+    getUser: function(request, response)
+    {
+        var userId = request.params.id;
+
+        User.findById(userId, (err, user)=>{
+       
+
+            if(user)
+            {
+                return response.status(200).send({
+                    message: 'success',
+                    user
+                });
+            }
+            else
+            {
+                return response.status(404).send({
+                    message: 'usuario no encontrado'
+                });
+            }
+
+            // if(err)
+            // {
+            //     return response.status(500).send({
+            //         message: 'Error con el servidor',
+            //         type: 'Error al get user'
+            //     });
+            // }
+        });
     }
 };
 
