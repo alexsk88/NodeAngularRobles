@@ -16,6 +16,7 @@
 // Cargas archivos de Rutas
 
     var user_routes = require('./routes/user');
+    var topic_routes = require('./routes/topic');
 
 
 
@@ -47,6 +48,7 @@
     });*/
 
     app.use('/api',user_routes);
+    app.use('/api',topic_routes);
     // Añade la palabra /api antes de routes
 
 

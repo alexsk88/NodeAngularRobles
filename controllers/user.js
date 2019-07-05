@@ -484,13 +484,7 @@ var controller =
                 });
             }
 
-            // if(err)
-            // {
-            //     return response.status(500).send({
-            //         message: 'Error con el servidor',
-            //         type: 'Error al get user'
-            //     });
-            // }
+           
         });
     }
 };
