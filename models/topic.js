@@ -1,8 +1,8 @@
 'use strict'
 
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate-v2');
 var Schema = mongoose.Schema;
-
 // Modeo de Comentarios
 
 var CommentsShema = Schema({
@@ -24,5 +24,7 @@ var TopicSchema = Schema ({
     comments: [CommentsShema]
 });
 
+// Cargar paginacion
+TopicSchema.plugin(mongoosePaginate);
 
 module.exports  = mongoose.model('Topic', TopicSchema);

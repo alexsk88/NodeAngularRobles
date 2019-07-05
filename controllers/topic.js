@@ -43,6 +43,7 @@ var controller =
                 topic.content = params.content;
                 topic.code = params.code;
                 topic.lang = params.lang;
+                topic.user = request.user.sub;
 
             // Guardar valores
                 topic.save((err, topicStored)=>{
@@ -72,18 +73,59 @@ var controller =
     getTopics: function(request, response)
     {
         // Cargar la libreria de paginacion en la clase
+            // Esto esta en el modelo de topics
 
         // Recoger la pagina actual
-
+        var page = parseInt(request.params.page);
+        if(page == null || page == undefined || page == 0 || page == '0')
+        {
+            page = 1;
+        }
         // Indicar las opciones de paginacion 
+
+            // Si en sort date coloco 1 => Ordena de mas viejo a mas nuevo (asc)
+            // Si en sort date coloco -1 => Ordena de mas nuevo a mas  viejo (des)
+
+            //Populate: Trae todo lo relacionado al id del usuario
+            // Pues yo coloque user, asi que trae users
+         var options = {
+            sort: {date: -1 },
+            populate: 'user',
+            limit: 5,
+            page: page
+         };
 
         // Find paginado 
 
-        // Devolver resultado (topics, totalTopics, TotalPages)
+            Topic.paginate({}, options, (err, topics)=>
+            {    
 
-        return response.status(200).send({
-            messague: 'Sirve'
-        });
+                if(err)
+                {
+                    return response.status(500).send({
+                        messague: 'Error con el servidor',
+                        type: 'Error con la Paginacion'
+                    });
+                }
+                
+                if(!topics)
+                {
+                    return response.status(404).send({
+                        messague: 'No hay Topics',
+                        status: 'notFound'
+                    });
+                }
+               
+                    return response.status(200).send({
+                        status: 'success',
+                        topics: topics.docs,
+                        totalDocs: topics.totalDocs,
+                        totalpages: topics.totalPages
+                    });
+            
+                // Devolver resultado (topics, totalTopics, TotalPages)
+            });
+
     }
 };
 
