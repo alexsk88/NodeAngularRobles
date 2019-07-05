@@ -126,6 +126,43 @@ var controller =
                 // Devolver resultado (topics, totalTopics, TotalPages)
             });
 
+    },
+
+    getTopicsByUser: function(request, response)
+    {
+
+        // Conseguir el Id del usser
+        var userId = request.params.user;
+
+        // Hacer un Find con la condicion de Usario(comprobar topics de User)
+
+        Topic.find({user: userId})
+             .sort([['date', 'descending']])
+             .exec( (err, TopicsUser)=>{
+                if(err)
+                {
+                    return response.status(500).send({
+                        messague: 'Error con el servidor',
+                        type: 'Erro al sacer topics de User'
+                    });
+                }
+                
+                if(!TopicsUser)
+                {
+                    return response.status(404).send({
+                        status: 'error',
+                        messague: 'No hay Topics'
+                    });
+                }
+
+                // Devolver un resultado
+
+                return response.status(200).send({
+                    status: 'success',
+                    TopicsUser
+                });
+            });
+
     }
 };
 

@@ -16,4 +16,9 @@ router.post('/topic', md_auth.auth, TopicController.save);
 // Listar Topics con Paginador WUAAAAU
 router.get('/topics/:page?', TopicController.getTopics);  
 
+// Listar los Topics por User
+router.get('/user-topics/:user?', TopicController.getTopicsByUser);
+
+
+
 module.exports = router;
