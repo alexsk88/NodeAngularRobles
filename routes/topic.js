@@ -12,4 +12,8 @@ router.get('/test', TopicController.test);
 // Guardar Topic
 router.post('/topic', md_auth.auth, TopicController.save);  
 
+
+// Listar Topics con Paginador WUAAAAU
+router.get('/topics/:page?', TopicController.getTopics);  
+
 module.exports = router;

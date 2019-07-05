@@ -69,6 +69,22 @@ var controller =
         }
     },
     
+    getTopics: function(request, response)
+    {
+        // Cargar la libreria de paginacion en la clase
+
+        // Recoger la pagina actual
+
+        // Indicar las opciones de paginacion 
+
+        // Find paginado 
+
+        // Devolver resultado (topics, totalTopics, TotalPages)
+
+        return response.status(200).send({
+            messague: 'Sirve'
+        });
+    }
 };
 
 module.exports = controller;
