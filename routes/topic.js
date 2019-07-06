@@ -19,6 +19,8 @@ router.get('/topics/:page?', TopicController.getTopics);
 // Listar los Topics por User
 router.get('/user-topics/:user?', TopicController.getTopicsByUser);
 
+router.get('/topic/:id', TopicController.getTopic);
+
 
 
 module.exports = router;

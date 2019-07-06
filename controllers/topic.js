@@ -163,6 +163,36 @@ var controller =
                 });
             });
 
+    },
+
+    getTopic: function(request, response)
+    {
+        var id = request.params.id;
+
+        Topic.findById(id, (err, Topic)=>{
+            if(err)
+            {
+                return response.status(500).send({
+                    messague: 'Error con el servidor',
+                    type: 'Erro al sacar el TOPIC'
+                });
+            }
+            
+            if(Topic)
+            {
+                return response.status(200).send({
+                    messague: 'success',
+                    topic: Topic
+                });
+            }
+            else
+            {
+                return response.status(404).send({
+                    messague: 'El Topics no existe'
+                });
+            }
+
+        }).populate('user');
     }
 };
 
