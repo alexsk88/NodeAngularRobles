@@ -22,5 +22,8 @@ router.get('/user-topics/:user?', TopicController.getTopicsByUser);
 router.get('/topic/:id', TopicController.getTopic);
 
 
+router.put('/update/:id', md_auth.auth, TopicController.update);
+
+
 
 module.exports = router;

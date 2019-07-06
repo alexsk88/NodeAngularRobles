@@ -193,6 +193,75 @@ var controller =
             }
 
         }).populate('user');
+    },
+
+    update: function(request, response)
+    {   
+        // Recoger de id del  Topic por Url
+        var idTopic = request.params.id;
+
+        // Recoger datos que llegan por Post
+        var params = request.body;
+
+        //Recoger id de usuario
+        var userID = request.user.sub;
+
+        // Validar los datos
+        try 
+        {
+            var validate_title = !validator.isEmpty(params.title);
+            var validate_content = !validator.isEmpty(params.content);
+            var validate_lang = !validator.isEmpty(params.lang);
+        }
+        catch
+        {
+            return response.status(200).send({
+                messague: 'Faltan datos por Enviar'
+            });
+        }
+    
+
+        if(validate_title && validate_content && validate_lang)
+        {
+
+            // Mostrar un Json con los datos Modificables
+            var topicUpdate = {
+            title: params.title,
+            content: params.content,
+            code: params.code,
+            lang: params.lang,
+             }   
+            
+            // Find  and Update por id topic e id User
+
+            console.log(request.user.name);
+            
+            Topic.findByIdAndUpdate({_id: idTopic, user: userID}, topicUpdate ,{new: true} ,(err, TopicsUpdate)=>{
+                if(err)
+                {
+                    return response.status(500).send({
+                        messague: 'Error con el servidor',
+                        type: 'Erro al Update el TOPIC'
+                    });
+                }
+                
+                if(TopicsUpdate)
+                {
+                    // Devolver una Respuseta
+                    return response.status(201).send({
+                        status: 'success',
+                        messague: 'Topics Actualizado',
+                        TopicsUpdate
+                    });
+                } 
+            }).populate('user');   
+        }
+        else
+        {
+            return response.status(200).send({
+                messague: 'Datos No Validos',
+            });
+        }
     }
 };
 
