@@ -286,6 +286,43 @@ var controller =
                         email: user.email
                     });
                 }
+                else
+                {
+                    // Eliminar propiedades inncesarias
+                    delete update_params.password;
+
+                    // Buscar y actualizar Documento
+
+                    var userId = request.user.sub;
+                    // console.log(userId);
+                    
+
+                    // User.findOneAndUpdate(condicion, datos a actualizar, opcion, callback)
+                    // {new: true} => devuelve los datos ya actualizados ¿, no los viejos 
+                    User.findOneAndUpdate({_id: userId}, update_params, {new: true},(err, UserUpdated)=>{
+                        if(err)
+                        {
+                            return response.status(500).send({
+                                message: 'Error con el servidor',
+                                error: err,
+                                type: 'Buscar y Actualizar'
+                            });
+                        }
+
+                        if(!UserUpdated)
+                        {
+                            return response.status(400).send({
+                                message: 'Error al Actualizar el User'
+                            });
+                        }
+
+                        return response.status(200).send({
+                            status: 'Success',
+                            UserUpdated
+                        });
+                    });
+                }
+                        
             });
         }
         else
