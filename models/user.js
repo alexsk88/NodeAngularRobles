@@ -15,6 +15,17 @@ var userSchema = Schema ({
     role: String
 });
 
+// Borrar el dato password cuando se llama este modelo
+
+userSchema.methods.toJSON = function ()
+{
+    var obj = this.toObject();
+
+    delete obj.password;
+
+    return obj; 
+};
+
 module.exports  = mongoose.model('User', userSchema);
 // Esto es como un objeto
 // Hace un lowecase y pluraliza el name
