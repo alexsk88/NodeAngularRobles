@@ -24,6 +24,8 @@ router.get('/topic/:id', TopicController.getTopic);
 
 router.put('/update/:id', md_auth.auth, TopicController.update);
 
+router.delete('/delete/:id', md_auth.auth, TopicController.delete);
+
 
 
 module.exports = router;

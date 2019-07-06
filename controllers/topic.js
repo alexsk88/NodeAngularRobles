@@ -234,27 +234,43 @@ var controller =
             
             // Find  and Update por id topic e id User
 
-            console.log(request.user.name);
+            // console.log(request.user.name);
+            // console.log(request.user.sub);
             
-            Topic.findByIdAndUpdate({_id: idTopic, user: userID}, topicUpdate ,{new: true} ,(err, TopicsUpdate)=>{
-                if(err)
+            Topic.findOne({_id: idTopic, user: userID}).exec((err, user)=>{
+                if(user)
                 {
-                    return response.status(500).send({
-                        messague: 'Error con el servidor',
-                        type: 'Erro al Update el TOPIC'
+                    //console.log("User iguales");
+                    Topic.findByIdAndUpdate({_id: idTopic}, topicUpdate ,{new: true} ,(err, TopicsUpdate)=>{
+                        if(err)
+                        {
+                            return response.status(500).send({
+                                messague: 'Error con el servidor',
+                                type: 'Erro al Update el TOPIC'
+                            });
+                        }
+                        
+                        if(TopicsUpdate)
+                        {
+                            // Devolver una Respuseta
+                            return response.status(201).send({
+                                status: 'success',
+                                messague: 'Topics Actualizado',
+                                TopicsUpdate
+                            });
+                        } 
+                    }).populate('user');   
+                    
+                }
+                else
+                {
+                    //console.log("No son oiguales");
+                    return response.status(400).send({
+                        messague: 'No eres el dueño del Post'
                     });
                 }
-                
-                if(TopicsUpdate)
-                {
-                    // Devolver una Respuseta
-                    return response.status(201).send({
-                        status: 'success',
-                        messague: 'Topics Actualizado',
-                        TopicsUpdate
-                    });
-                } 
-            }).populate('user');   
+            });
+
         }
         else
         {
@@ -262,6 +278,54 @@ var controller =
                 messague: 'Datos No Validos',
             });
         }
+    },
+
+    delete: function(request, response)
+    {
+        // Capturar Id del Topics
+        var topicID = request.params.id;
+        // Id del usuario
+        var userID = request.user.sub;
+
+        Topic.findOne({_id: topicID, user: userID}).exec((err, user)=>{
+            if(user)
+            {
+                //console.log("User iguales");
+                Topic.findByIdAndDelete({_id: topicID}, (err,topicDelete)=>{
+                    if(err)
+                    {
+                        return response.status(500).send({
+                            messague: 'Error con el servidor',
+                            type: 'Erro al borrar el TOPIC'
+                        });
+                    }
+        
+                    if(topicDelete)
+                    {
+                        return response.status(200).send({
+                            status: 'success',
+                            messague: 'Topic borrado',
+                            topicDelete
+                        });
+                    }
+                    else
+                    {
+                        return response.status(200).send({
+                            status: 'error',
+                            messague: 'El topic no Existe',
+                        });
+                    }
+                });
+                
+            }
+            else
+            {
+                //console.log("No son oiguales");
+                return response.status(400).send({
+                    messague: 'No eres el dueño del Post'
+                });
+            }
+        });
     }
 };
 
