@@ -17,7 +17,7 @@
 
     var user_routes = require('./routes/user');
     var topic_routes = require('./routes/topic');
-
+    var comment_routes = require('./routes/comment');
 
 
 // Cargar Midleware
@@ -49,6 +49,7 @@
 
     app.use('/api',user_routes);
     app.use('/api',topic_routes);
+    app.use('/api',comment_routes);
     // Añade la palabra /api antes de routes
 
 
