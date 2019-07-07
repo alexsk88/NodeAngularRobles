@@ -326,6 +326,40 @@ var controller =
                 });
             }
         });
+    },
+
+    search: function(request, response)
+    {
+        // Recoger parametro de busqueda
+        var palabra = request.params.search;
+
+        // Find con un operador OR
+            // Va a hacer una busque que cumpla una condicion O
+            // otra condicion O otra condicion ......
+
+            // $options i es caso sensitivo acepta lowercase o UpperCase
+        Topic.find({"$or":[
+            {'title': {'$regex': palabra, '$options': 'i'} },
+            {'content': {'$regex': palabra, '$options': 'i'} },
+            {'code': {'$regex': palabra, '$options': 'i'} },
+            {'lang': {'$regex': palabra, '$options': 'i'} },
+        ]})
+        .sort([['date', 'descending']])
+        .exec((err, topics)=>{
+            if(err)
+            {
+                return response.status(500).send({
+                    messague: 'Error con el servidor',
+                    type: 'Erro al buscar el TOPIC'
+                });
+            }
+
+            // Devolver un reslutado
+            return response.status(200).send({
+                messague: 'Topics encontrados',
+                topics
+            });
+        });
     }
 };
 
