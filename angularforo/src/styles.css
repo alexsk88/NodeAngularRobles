@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+
+.animated.rapidoome {
+    -webkit-animation-duration: 100ms;
+    animation-duration: 100ms;
+  }

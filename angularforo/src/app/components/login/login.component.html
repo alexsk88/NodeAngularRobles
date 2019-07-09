@@ -1,0 +1,40 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Login</h1>
+        <p class="lead">Entra a nuestro foro para poder hacer
+            consultas de Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+            Unde nulla autem, eum quos error rerum ratione animi illum et optio nisi
+            non quae, consequatur consectetur quasi quaerat delectus reiciendis reprehenderit.
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <form #formLogin="ngForm" (ngSubmit)="login(formLogin)">
+        <div class="form-group">
+            <label for="emaillogin">Email</label>
+            <input type="email" class="form-control" id="emaillogin"  
+            name="email" #email="ngModel" [(ngModel)]="parametros.email"
+            aria-describedby="emailHelp" placeholder="Introduce tu email" 
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
+
+            <small *ngIf="email.invalid && email.touched" id="emailHelp" 
+                    class="form-text text-monospace w3-text-red">
+                Email no Valido</small>
+        </div>
+
+        <div class="form-group">
+            <label for="passwordlogin">Password</label>
+            <input type="password" class="form-control" id="passwordlogin" 
+            name="passwrod" #passwrod="ngModel" [(ngModel)]="parametros.password"
+            placeholder="Introduce tu Password" required>
+
+            <small *ngIf="passwrod.invalid && passwrod.touched" id="emailHelp" 
+                    class="form-text text-monospace w3-text-red">
+                Password requerido</small>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-block" [disabled]="!formLogin.valid"
+        >Entrar</button>
+    </form>
+</div>
