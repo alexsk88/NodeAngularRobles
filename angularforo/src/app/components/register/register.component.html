@@ -1,6 +1,6 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container text-center">
-        <h1 class="display-4">Registro</h1>
+        <h1 class="display-4"><b>Registro</b></h1>
         <p class="lead">Regustrate a nuestro foro para poder hacer
             consultas de Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
             Unde nulla autem, eum quos error rerum ratione animi illum et optio nisi
@@ -10,6 +10,19 @@
 </div>
 
 <div class="container">
+
+    <div *ngIf="status == 'error'" class="alert alert-danger">
+        Error al crear el usuario 
+    </div>
+
+    <div *ngIf="status == 'success'" class="alert alert-success">
+        Usuario Creado correctamente <a [routerLink]="[ '/login']">Loggueate AQUI</a>
+    </div>
+
+    <div *ngIf="status == 'duplicado'" class="alert alert-warning">
+        Este email <b>YA EXISTE</b>, intenta con otro.
+    </div>
+
     <form #formRegister="ngForm" (ngSubmit)="register(formRegister)">
         <div class="form-group">
             <label for="nameLogin">Nombre</label>
