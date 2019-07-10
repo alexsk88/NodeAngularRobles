@@ -4,3 +4,8 @@
     -webkit-animation-duration: 100ms;
     animation-duration: 100ms;
   }
+
+.pointer
+{
+  cursor: pointer;
+}

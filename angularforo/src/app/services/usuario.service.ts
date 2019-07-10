@@ -9,7 +9,8 @@ import { global } from './global';
 export class UsuarioService 
 {
   url: String;
-
+  identity: String;
+  token: String;
 
   constructor(private _http: HttpClient)
   {
@@ -46,4 +47,37 @@ export class UsuarioService
     // Hacer Peticion Ajax
     return this._http.post(this.url+'login', params ,{headers});
   }
+
+  getIdentity()
+  {
+    let identity =JSON.parse(localStorage.getItem('identity'));
+
+    if(identity && identity != null && identity != undefined && identity != 'undefined') 
+    {
+      this.identity = identity;
+    }
+    else
+    {
+      this.identity = null;
+    }
+
+    return this.identity;
+  }
+
+  getToken()
+  {
+    let token = localStorage.getItem('token');
+
+    if(token && token != null && token != undefined && token != 'undefined') 
+    {
+      this.token = token;
+    }
+    else
+    {
+      this.token = null;
+    }
+
+    return this.token;
+  }
+
 }

@@ -20,8 +20,12 @@
                 <a class="nav-link" href="#">Ver Temas</a>
             </li>
             
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="identity != null">
                 <a class="nav-link" href="#">Crear Temas</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Compañeros</a>
             </li>
 
             <li class="nav-item pl-5">
@@ -33,43 +37,43 @@
         </ul>
 
        
-        
-        <ul class="navbar-nav navbar-right mr-5">
-
+        <ul *ngIf="identity == null" class="navbar-nav navbar-right">
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['registro']">Registrate</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"  [routerLink]="['login']">Login</a>
             </li>
-        
+        </ul>
+
+        <ul *ngIf="identity != null"  class="navbar-nav navbar-right" style="margin-right: 100px">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Nombre Apillidos
+                {{ identity.name | titlecase }} &nbsp; {{ identity.surname | titlecase}} 
                 </a>
-                <div class="dropdown-menu animated fadeInDownBig rapidoome " 
+                <div class="pointer dropdown-menu animated fadeInDownBig rapidoome " 
                      aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="pointer dropdown-item" href="#">
                     <i class="material-icons iconspacee">
                         view_compact
                     </i>
                     Panel de Usuario
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="pointer dropdown-item" href="#">
                     <i class="material-icons iconspacee">
                         person_pin
                     </i>
                     Mi perfil
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="pointer dropdown-item" href="#">
                     <i class="material-icons iconspacee">
                         build
                     </i>
                     Ajustes
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
+                <a class="pointer dropdown-item" (click)="logout()">
                     <i class="material-icons iconspacee">
                         power_settings_new
                     </i>
