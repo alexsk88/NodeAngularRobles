@@ -37,15 +37,15 @@ export class RegisterComponent implements OnInit
   {
     // console.log(this.user);
 
-    this._userSV.login(this.user).subscribe(
+    this._userSV.resgister(this.user).subscribe(
       response =>
       {
-        console.log("USER",response);
+        //console.log("USER",response);
         
-
         switch (response.status) {
           case 'success':
             this.status = 'success';
+            form.reset();
             break;
           case 'error':
             this.status = 'error';

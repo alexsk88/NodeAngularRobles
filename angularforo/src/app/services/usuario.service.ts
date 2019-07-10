@@ -16,7 +16,7 @@ export class UsuarioService
     this.url = global.url;
   }
 
-  login(user): Observable <any>
+  resgister(user): Observable <any>
   {
     // Convertir el Object a JSON String
     let params = JSON.stringify(user);
@@ -26,5 +26,24 @@ export class UsuarioService
 
     // Hacer Peticion Ajax
     return this._http.post(this.url+'register', params ,{headers});
+  }
+
+  login(user, getToken = null): Observable <any> 
+  {
+    // Comprobar si el token get est activo
+
+    if (getToken != null)
+    {
+      user.getToken = getToken;  
+    }
+
+    // Convertir el Object a JSON String
+    let params = JSON.stringify(user);
+   
+    // Definir Cabecera
+    let headers = new HttpHeaders().set('Content-Type',' application/json');
+
+    // Hacer Peticion Ajax
+    return this._http.post(this.url+'login', params ,{headers});
   }
 }
