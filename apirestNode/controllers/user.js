@@ -91,6 +91,7 @@ var controller =
                             if(err)
                             {
                                 return response.status(400).send({
+                                    status: 'error',
                                     message: "Error al guardar el usuario, SERVER",
                                     errorserver : err
                                 });
@@ -99,6 +100,7 @@ var controller =
                             if(userStored)
                             {
                                 return response.status(200).send({
+                                    status: 'success',
                                     message: "Usuario Saving Correctamente",
                                     user: userStored
                                 });
@@ -106,6 +108,7 @@ var controller =
                             else
                             {
                                 return response.status(400).send({
+                                    status: 'error',
                                     message: "Usuario No se ha Guardado",
                                 });
                             }
@@ -117,13 +120,14 @@ var controller =
                 else
                 {
                     return response.status(200).send({
+                        status: 'duplicado',
                         message: "El usuario YA EXISTE"
                     });
                 }
             });
 
 
-            }
+        }
         else
         {
             return response.status(400).send({
