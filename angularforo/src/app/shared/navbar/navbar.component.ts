@@ -1,6 +1,7 @@
 import { Component, OnInit , DoCheck} from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
+import { global } from 'src/app/services/global';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,9 @@ export class NavbarComponent implements OnInit, DoCheck {
 
   identity: String;
   token: String;
+  urlapi = global.url;
 
+  
   constructor(private _userSV: UsuarioService,
               private _router: Router)
   { 

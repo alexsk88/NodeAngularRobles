@@ -313,6 +313,7 @@ var controller =
                         if(err)
                         {
                             return response.status(500).send({
+                                status: 'error',
                                 message: 'Error con el servidor',
                                 error: err,
                                 type: 'Buscar y Actualizar'
@@ -322,12 +323,13 @@ var controller =
                         if(!UserUpdated)
                         {
                             return response.status(400).send({
+                                status: 'error',
                                 message: 'Error al Actualizar el User'
                             });
                         }
 
                         return response.status(200).send({
-                            status: 'Success',
+                            status: 'success',
                             UserUpdated
                         });
                     });

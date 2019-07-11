@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/user';
 import { UsuarioService } from '../../services/usuario.service';
 import { global } from 'src/app/services/global';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,10 +13,12 @@ import { global } from 'src/app/services/global';
 export class UserEditComponent implements OnInit 
 {
 
+
   urlapi = global.url;
   user: User;
   token: String;
   identity: any;
+  status: String;
 
   afuConfig = {
     multiple: false,
@@ -36,16 +39,19 @@ export class UserEditComponent implements OnInit
       resetBtn: 'Reset',
       uploadBtn: 'Upload',
       dragNDropBox: 'Drag N Drop',
-      attachPinBtn: 'Sube Tu Imagen para el POST',
+      attachPinBtn: ' Sube un Avatar',
       afterUploadMsg_success: 'Successfully Uploaded !',
       afterUploadMsg_error: 'Upload Failed !'
     }
   };
 
-  constructor(private _userSV: UsuarioService) 
-  { 
-    this.identity = _userSV.getIdentity();
-    this.token = _userSV.getToken();
+  constructor(private _userSV: UsuarioService,
+              private _router: Router) {}
+
+  ngOnInit()
+  {
+    this.identity = this._userSV.getIdentity();
+    this.token = this._userSV.getToken();
     this.user = new User(
       this.identity.id,
       this.identity.name,
@@ -55,16 +61,9 @@ export class UserEditComponent implements OnInit
       this.identity.image,
       'ROLE_USER',
     );
-
-    console.log(this.identity.image);
-    
   }
 
-  ngOnInit()
-  {
-
-  }
-
+  
   updateUser(form)
   {    
     this._userSV.updateuser(this.user , this.token).subscribe(
@@ -73,6 +72,13 @@ export class UserEditComponent implements OnInit
         console.log(res);
         localStorage.removeItem('identity');
         localStorage.setItem('identity',JSON.stringify(res.UserUpdated));
+        this.status = 'success'
+
+        setTimeout(() => {
+          this._router.navigate(['/home']);
+        }, 1000);
+
+        this._router.navigate
       },err=>console.log(err)
 
     );
