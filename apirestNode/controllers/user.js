@@ -192,6 +192,7 @@ var controller =
                             if(err)
                             {
                                 return response.status(500).send({
+                                    status: 'error',
                                     message: "Error del servidor",
                                     type: "Comparando bcrypt"
                                 });
@@ -209,13 +210,16 @@ var controller =
                                 if (params.getToken)
                                 {
                                     return response.status(200).send({
+                                        status: 'success',
+                                        message: "Token devuelto",
                                         token: jwt.createtoken(issetuser)
                                     });
                                 }
                                 else
                                 {
                                     return response.status(200).send({
-                                        message: "success",
+                                        status: 'success',
+                                        message: "Datos de usuario",
                                         user: issetuser
                                     });
                                 }
@@ -223,7 +227,8 @@ var controller =
                             }
                             else
                             {
-                                return response.status(400).send({
+                                return response.status(201).send({
+                                    status: 'error',
                                     message: "La contraseña NOO coincide",
                                 });
                             }
@@ -232,7 +237,8 @@ var controller =
                     }
                     else
                     {
-                        return response.status(404).send({
+                        return response.status(201).send({
+                            status: 'error',
                             message: "Usuario No encontrado"
                         });
                     }

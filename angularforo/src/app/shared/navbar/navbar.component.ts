@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit, DoCheck {
 
   constructor(private _userSV: UsuarioService,
               private _router: Router)
-  {
+  { 
   }
   
   ngDoCheck()
@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit, DoCheck {
   {
     this.identity = this._userSV.getIdentity();
     this.token = this._userSV.getToken();
+    // console.log(this.identity);
   }
 
   logout()
