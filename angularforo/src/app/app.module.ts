@@ -10,6 +10,8 @@ import { PanelModule } from './panel/panel.module';
 
 import { MomentModule } from 'angular2-moment';
 
+import { NgxHighlightJsModule  } from '@nowzoo/ngx-highlight-js';
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
@@ -41,7 +43,8 @@ import { TopicDetailComponent } from './components/topic-detail/topic-detail.com
     AngularFileUploaderModule,
     PanelModule,
     routing,
-    MomentModule
+    MomentModule,
+    NgxHighlightJsModule.forRoot()
   ],
   providers: [
     appRoutingProviders
