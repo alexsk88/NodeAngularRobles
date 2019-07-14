@@ -8,9 +8,7 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
 //Cargar Modulo de PANEL USUARIO
 import { PanelModule } from './panel/panel.module';
 
-// Rutas 
-
-
+import { MomentModule } from 'angular2-moment';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -38,7 +36,8 @@ import { routing, appRoutingProviders } from './app.routes';
     HttpClientModule,
     AngularFileUploaderModule,
     PanelModule,
-    routing
+    routing,
+    MomentModule
   ],
   providers: [
     appRoutingProviders
