@@ -14,7 +14,9 @@ export class NavbarComponent implements OnInit, DoCheck {
   token: String;
   urlapi = global.url;
 
-  
+  ejemplo:String;
+
+
   constructor(private _userSV: UsuarioService,
               private _router: Router)
   { 
@@ -30,7 +32,7 @@ export class NavbarComponent implements OnInit, DoCheck {
   {
     this.identity = this._userSV.getIdentity();
     this.token = this._userSV.getToken();
-    // console.log(this.identity);
+ 
   }
 
   logout()
@@ -40,5 +42,12 @@ export class NavbarComponent implements OnInit, DoCheck {
     this.token = null;
     this._router.navigate(['/home']);
   }
+
+  buscar(text:any)
+  {
+   
+  }
+
+
 
 }

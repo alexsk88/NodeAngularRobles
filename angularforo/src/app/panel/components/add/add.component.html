@@ -12,10 +12,10 @@
 
     <form  #addTopic="ngForm" (ngSubmit)="newTopics(addTopic)">
         <div class="form-group">
-           <label for="name">Nombre</label>
+           <label for="name">Titulo</label>
             <input type="text" name="title" #title="ngModel" id="name"
             [(ngModel)]="topic.title" class="form-control"
-            pattern="[a-zA-ZÀ-ÿ??¿ ]+" required/>
+            pattern="[a-zA-ZÀ-ÿ0-9??¿ ]+" required/>
 
             <small *ngIf="!title.valid && title.touched" class="invalid-feddback d-block">
                 El Titulo no es valido
@@ -53,7 +53,7 @@
         </div>
 
         <button type="submit" class="pointer btn btn-success btn-block" [disabled]="!addTopic.valid">
-            Entrar
+            Agregar
         </button>
     </form>
 

@@ -31,7 +31,7 @@
             <li class="nav-item pl-5">
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." 
-                    aria-label="Search"/>
+                    aria-label="Search" #search (keydown.enter)="buscar(search.value)"/>
                 </form>
             </li>
         </ul>

@@ -15,7 +15,7 @@ const routes: Routes = [
     { path: 'ajustes', component: UserEditComponent },
     { path: 'login', component: LoginComponent },
     { path: 'registro', component: RegisterComponent },
-    { path: 'temas', component: TopicsComponent },
+    { path: 'temas/:page', component: TopicsComponent },
     { path: '**', component: PageNotFoundComponent },
 ];
 
