@@ -1,1 +1,53 @@
-<p>add works!</p>
+<div class="col-lg-10">
+    <h3>Add Tema</h3>
+    <hr>
+
+    <form  #addTopic="ngForm" (ngSubmit)="newTopics(addTopic)">
+        <div class="form-group">
+           <label for="name">Nombre</label>
+            <input type="text" name="title" #title="ngModel" id="name"
+            [(ngModel)]="topic.title" class="form-control"
+            pattern="[a-zA-ZÀ-ÿ??¿ ]+" required/>
+
+            <small *ngIf="!title.valid && title.touched" class="invalid-feddback d-block">
+                El Titulo no es valido
+            </small>
+        </div>
+
+        <div class="form-group">
+           <label for="contenido">Contenido</label>
+            <textarea name="content" #content="ngModel" class="form-control" id="contenido"
+            [(ngModel)]="topic.content" required></textarea>
+            
+            <small *ngIf="!content.valid && content.touched" class="invalid-feddback d-block">
+                El Contenido no es valido
+            </small>
+        </div>
+        
+        <div class="form-group">
+            <label for="codigo">Pon tu Codigo</label>
+            <textarea name="code" #code="ngModel" class="form-control" id="codigo"
+            [(ngModel)]="topic.code"></textarea>
+            
+            <small *ngIf="!code.valid && code.touched" class="invalid-feddback d-block">
+                El Titulo no es valido
+            </small>
+        </div>
+
+        <div class="form-group">
+           <label for="languje">¿ De que lenguaje Hablas ?</label>
+            <textarea name="lang" #lang="ngModel" class="form-control" id="languje"
+            [(ngModel)]="topic.lang" required></textarea>
+            
+            <small *ngIf="!lang.valid && lang.touched" class="invalid-feddback d-block">
+                El Titulo no es valido
+            </small>
+        </div>
+
+        <button type="submit" class="pointer btn btn-success btn-block" [disabled]="!addTopic.valid">
+            Entrar
+        </button>
+    </form>
+
+
+</div> 
