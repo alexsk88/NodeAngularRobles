@@ -35,11 +35,11 @@ export class AddComponent implements OnInit
 
   newTopics(form: any)
   {
-    console.log(this.topic);
+    //console.log(this.topic);
     this._topicSV.saveTopic(this.topic , this.token).subscribe(
       res=>
       {
-        console.log(res);
+        //console.log(res);
         if(res.status == 'success')
         {
           this.status = res.status;

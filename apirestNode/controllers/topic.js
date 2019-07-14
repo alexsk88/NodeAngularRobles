@@ -305,6 +305,7 @@ var controller =
                     if(err)
                     {
                         return response.status(500).send({
+                            status: 'error',
                             messague: 'Error con el servidor',
                             type: 'Erro al borrar el TOPIC'
                         });
@@ -332,6 +333,7 @@ var controller =
             {
                 //console.log("No son oiguales");
                 return response.status(400).send({
+                    status: 'error',
                     messague: 'No eres el dueño del Post'
                 });
             }

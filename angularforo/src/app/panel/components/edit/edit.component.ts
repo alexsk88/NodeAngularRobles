@@ -51,16 +51,8 @@ export class EditComponent implements OnInit
            if(res.status == 'success')
            {
              this.topic = null;
-            console.log("gola");
-            this.topic = new Topic(
-            res.topic._id,
-            res.topic.title,
-            res.topic.content,
-            res.topic.code,
-            res.topic.lang,
-            '',
-            this.identity._id,
-            null);
+            //console.log("gola");
+            this.topic =  res.topic
             this.loading = false
             
            }

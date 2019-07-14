@@ -33,11 +33,29 @@ export class ListComponent implements OnInit
       res=>
       {
         this.topics = res.TopicsUser;
-        console.log(this.topics);
+        //console.log(this.topics);
         
       },err=>console.log("Erro al traer topics", err)
       
     );
   }
 
+  eliminarTopic(id: any)
+  {
+    //console.log(id);
+
+    this._topicsSV.eliminaropics(id, this.token).subscribe(
+      res=>
+      {
+        if(res.status == 'success')
+        {
+          //console.log("Se elimio");
+          this.getTopics();
+        }
+      },
+      err=>console.log("Error", err)
+      
+    )
+    
+  }
 }
