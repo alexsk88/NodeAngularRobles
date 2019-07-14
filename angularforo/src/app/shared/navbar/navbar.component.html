@@ -17,11 +17,11 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Ver Temas</a>
+                <a class="nav-link" [routerLink]="['temas']">Ver Temas</a>
             </li>
             
             <li class="nav-item" *ngIf="identity != null">
-                <a class="nav-link" href="#">Crear Temas</a>
+                <a class="nav-link" [routerLink]="['panel/crear']">Crear Temas</a>
             </li>
 
             <li class="nav-item">

@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { TopicsComponent } from './components/topics/topics.component';
 
 
 
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: 'ajustes', component: UserEditComponent },
     { path: 'login', component: LoginComponent },
     { path: 'registro', component: RegisterComponent },
+    { path: 'temas', component: TopicsComponent },
     { path: '**', component: PageNotFoundComponent },
 ];
 

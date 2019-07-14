@@ -472,7 +472,7 @@ var controller =
 
         var pathFile = './uploads/users/'+ fileName;
         
-        console.log(pathFile);
+        //console.log(pathFile);
         
 
         fs.exists(pathFile, (exists)=>{

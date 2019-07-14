@@ -18,6 +18,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { routing, appRoutingProviders } from './app.routes';
+import { TopicsComponent } from './components/topics/topics.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { routing, appRoutingProviders } from './app.routes';
     RegisterComponent,
     PageNotFoundComponent,
     UserEditComponent,
+    TopicsComponent,
   ],
   imports: [
     BrowserModule,

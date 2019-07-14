@@ -29,7 +29,7 @@ export class ListComponent implements OnInit
 
   getTopics()
   {
-    this._topicsSV.getTopics(this.identity._id).subscribe(
+    this._topicsSV.getTopicsByUser(this.identity._id).subscribe(
       res=>
       {
         this.topics = res.TopicsUser;

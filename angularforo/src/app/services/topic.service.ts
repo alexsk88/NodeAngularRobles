@@ -44,7 +44,7 @@ export class TopicService
     return this._http.delete(`${this.url}/delete/${id}`,{headers});
   }
 
-  getTopics(id: any): Observable <any>
+  getTopicsByUser(id: any): Observable <any>
   {
     let headers = new HttpHeaders().set('Content-Type','application/json')
 
@@ -56,5 +56,11 @@ export class TopicService
     let headers = new HttpHeaders().set('Content-Type','application/json')
 
     return this._http.get(`${this.url}/topic/${id}`,{headers});
+  }
+
+
+  getTopics(page = 1): Observable <any>
+  {
+    return this._http.get(`${this.url}/topics/${page}`);
   }
 }
