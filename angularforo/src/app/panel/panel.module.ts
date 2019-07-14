@@ -12,6 +12,8 @@ import { EditComponent } from './components/edit/edit.component';
 import { ListComponent } from './components/list/list.component';
 import { DeleteComponent } from './components/delete/delete.component';
 import { PanelRoutingModule } from './panel-routing.module';
+import { UsuarioService } from '../services/usuario.service';
+import { UserGuard } from '../services/user.guard';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { PanelRoutingModule } from './panel-routing.module';
     FormsModule,
     HttpClientModule,
     PanelRoutingModule,
-    MomentModule
+    MomentModule,
+   
   ],
   exports: [
     MainComponent,
@@ -36,6 +39,9 @@ import { PanelRoutingModule } from './panel-routing.module';
     EditComponent,
     DeleteComponent,
   ],
-  providers: []
+  providers: [
+    UsuarioService,
+    UserGuard
+  ]
 })
 export class PanelModule { }

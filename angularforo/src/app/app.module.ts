@@ -22,6 +22,8 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { routing, appRoutingProviders } from './app.routes';
 import { TopicsComponent } from './components/topics/topics.component';
 import { TopicDetailComponent } from './components/topic-detail/topic-detail.component';
+import { UsuarioService } from './services/usuario.service';
+import { UserGuard } from './services/user.guard';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { TopicDetailComponent } from './components/topic-detail/topic-detail.com
     NgxHighlightJsModule.forRoot()
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    UsuarioService,
+    UserGuard
   ],
   bootstrap: [AppComponent]
 })
