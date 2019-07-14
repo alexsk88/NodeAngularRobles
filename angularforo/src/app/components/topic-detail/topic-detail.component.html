@@ -22,6 +22,68 @@
         </p>
     </div> 
 
+    <div class="clearfix"></div>
+
+    <div id="comment-box my-2 col-lg-8">
+        <h3>Comentario</h3>
+        <hr>
+        <div>
+            <div class="rta alert alert-danger" *ngIf="status == 'error'">
+                Comentario NO guardado
+            </div>
+
+            <div class="rta alert alert-success" *ngIf="status == 'success'">
+                Comentario agregado successfull
+            </div>
+        </div>
+        <form #formComment="ngForm" (ngSubmit)="enviarComment(formComment)" *ngIf="identity">
+            <div class="form-group">
+            <label for="content">Pon tu Comentatio</label>
+                <textarea name="content" #content="ngModel" class="form-control" id="content"
+                [(ngModel)]="comment.content" required></textarea>
+                
+                <small *ngIf="!content.valid && content.touched" class="invalid-feddback d-block">
+                    El Contenido no es valido
+                </small>
+            </div>
+
+            <button type="submit" class="pointer btn btn-success btn-block" 
+                     [disabled]="!formComment.valid">
+                Comentar
+            </button>
+        </form>
+        <hr>
+        <ul class="list-group list-comments">
+            <li class="list-group-item" *ngFor="let comment of topic.comments">
+                <div class="avatar_mask mr-3 p-0 float-left">
+                    <img src="assets/img/avatar.png" 
+                    alt="Imagen Avatar User" *ngIf="comment.user.image == null">
+
+
+                    <img src="{{ urlapi + '/avatar/' + comment.user.image }}" 
+                    alt="Imagen Avatar User" *ngIf="comment.user.image">
+                </div>
+                <span class="badge badge-primary">
+                    {{ comment.user.name + ' ' + comment.user.surname }}
+                    {{ comment.user.image}}
+                </span>
+                <span class="badge badge-light ml-2"> 
+                    {{ comment.date | amLocale: 'es' | amTimeAgo }}
+                </span>
+             
+                <span class="d-block">
+                    {{ comment.content }}
+                </span>
+                <button class="btn btn-danger btn-sm float-right"
+                        (click)="deleteComment(comment._id)"
+                        *ngIf="identity._id == comment.user._id">
+                    Borrar
+                </button>
+            </li>
+            
+        </ul>
+    </div>
+
 </div>
 
 <ng-template #loaD>

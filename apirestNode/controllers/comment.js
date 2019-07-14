@@ -20,6 +20,7 @@ var controller =
         catch (error)
         {
             return response.status(400).send({
+                status: 'error',
                 messague: 'No se envieron datos'
             });
         }
@@ -34,6 +35,7 @@ var controller =
                 if(err)
                 {
                     return response.status(500).send({
+                        status: 'error',
                         messague: 'Error con el servidor',
                         type: 'Error al buscar topics'
                     });
@@ -65,16 +67,41 @@ var controller =
                         if(err)
                         {
                             return response.status(500).send({
+                                status: 'error',
                                 messague: 'Error con el servidor',
                                 type: 'Error al buscar topics'
                             });
                         }
-                        
-                        return response.status(200).send({
-                            status: 'success',
-                            messague: 'Comentario Save Correctly',
-                            TopicsUser
-                        });
+                        Topic.findById(topicID, (err, Topic)=>{
+                            if(err)
+                            {
+                                return response.status(500).send({
+                                    status: 'error',
+                                    messague: 'Error con el servidor',
+                                    type: 'Erro al sacar el TOPIC'
+                                });
+                            }
+                            
+                            if(Topic)
+                            {
+                                return response.status(200).send({
+                                    status: 'success',
+                                    messague: 'Topic Encontrado',
+                                    topic: Topic
+                                });
+                            }
+                            else
+                            {
+                                return response.status(404).send({
+                                    status: 'error',
+                                    messague: 'El Topics no existe'
+                                });
+                            }
+                
+                        }).populate('user')
+                        .populate('comments.user');
+
+                     
                     });
                 }
             });
@@ -82,6 +109,7 @@ var controller =
         else
         {
             return response.status(200).send({
+                status: 'error',
                 messague: 'Datos no validos'
             });
         }
@@ -103,6 +131,7 @@ var controller =
         catch (error)
         {
             return response.status(400).send({
+                status: 'error',
                 messague: 'No se envieron datos'
             });
         }
@@ -121,12 +150,14 @@ var controller =
                 if(err)
                 {
                     return response.status(200).send({
+                        status: 'error',
                         message : 'error al buscar'
                     });
                 }
                 if(res)
                 {
                     return response.status(200).send({
+                        status: 'success',
                         message : 'Commentario Actualizado',
                         res
                     });
@@ -136,6 +167,7 @@ var controller =
         else
         {
             return response.status(200).send({
+                status: 'error',
                 message: 'Datos no validos'
             });
         }
@@ -156,6 +188,7 @@ var controller =
             if(err)
             {
                 return response.status(500).send({
+                    status: 'error',
                     message: 'El topics no existe'
                 });
             }
@@ -171,21 +204,47 @@ var controller =
                         if(err)
                         {
                             return response.status(500).send({
+                                status: 'error',
                                 message: 'Error al actualizar delete de comentario'
                             });
                         }
 
-                        return response.status(200).send({
-                            message: 'Commentario Borrado',
-                            status: 'success',
-                            TopicFound
-                        });
+                        Topic.findById(topicID, (err, Topic)=>{
+                            if(err)
+                            {
+                                return response.status(500).send({
+                                    status: 'error',
+                                    messague: 'Error con el servidor',
+                                    type: 'Erro al sacar el TOPIC'
+                                });
+                            }
+                            
+                            if(Topic)
+                            {
+                                return response.status(200).send({
+                                    status: 'success',
+                                    messague: 'Topic Booradp',
+                                    topic: Topic
+                                });
+                            }
+                            else
+                            {
+                                return response.status(404).send({
+                                    status: 'error',
+                                    messague: 'El Topics no existe'
+                                });
+                            }
+                
+                        }).populate('user')
+                        .populate('comments.user');
+
                     });
                   
                 }
                 else
                 {
                     return response.status(404).send({
+                        status: 'error',
                         message: 'El topics NO EXISTE',
                     });
                 }

@@ -18,6 +18,7 @@ export class TopicsComponent implements OnInit
   next_page
   prev_page
   number_pages
+  loading = true;
 
   constructor(private _routerActi: ActivatedRoute,
     private _router: Router,
@@ -88,7 +89,7 @@ export class TopicsComponent implements OnInit
             this.next_page = this.totalPages
           }
           
-
+          this.loading = false;
           // Este metodo se llama por cada iteracion que haga el usuerio
           // con la paginacion, el api trae una pagina en especifico
           // pero con el paginador pide una pagina en especifico

@@ -198,7 +198,8 @@ var controller =
                 });
             }
 
-        }).populate('user');
+        }).populate('user')
+        .populate('comments.user');
     },
 
     update: function(request, response)

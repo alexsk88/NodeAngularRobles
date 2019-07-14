@@ -1,4 +1,5 @@
-<div class="col-md-12 my-5 animated fadeInRightBig rapidoome">
+<div class="col-md-12 my-5 animated fadeInRightBig rapidoome" 
+    *ngIf="topics && !loading; else loaD">
     <h1>{{ page_title }}</h1>
     <hr>
 
@@ -15,7 +16,8 @@
             <span class="badge badge-light ml-2"> 
                 {{ topic.date | amLocale: 'es' | amTimeAgo }}
             </span>
-            <a [routerLink]="[ '/home' ]" class="d-block btn btn-sm btn-success float-right mx-auto">
+            <a  [routerLink]="[ '/tema', topic._id]" 
+                class="d-block btn btn-sm btn-success float-right mx-auto">
                 Leer
             </a>
         </li>
@@ -44,3 +46,8 @@
    
 
 </div>
+<ng-template #loaD>
+    <h4>Cargando</h4>
+        <img src="assets/img/flechacircle.svg" width="20" height="20" 
+        alt="img Chargued" class="w3-spin"> 
+</ng-template>
