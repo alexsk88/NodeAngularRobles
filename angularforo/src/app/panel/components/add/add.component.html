@@ -2,6 +2,14 @@
     <h3>Add Tema</h3>
     <hr>
 
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        El Tema NO ha sido guardado correctamente
+    </div>
+    
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        El Tema ha sido guardado correctamente
+    </div>
+
     <form  #addTopic="ngForm" (ngSubmit)="newTopics(addTopic)">
         <div class="form-group">
            <label for="name">Nombre</label>

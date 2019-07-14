@@ -52,10 +52,12 @@ var controller =
                     if(err || !topicStored)
                     {
                         return response.status(400).send({
+                            status: 'error',
                             messague: 'Error al save Topic'
                         });
                     }
                     return response.status(200).send({
+                        status: 'success',
                         messague: 'Topic Guardada',
                         topicStored
                     });
@@ -65,6 +67,7 @@ var controller =
         else
         {   
             return response.status(201).send({
+                status: 'error',
                 messague: 'Los datos no son Validos'
             });
         }
