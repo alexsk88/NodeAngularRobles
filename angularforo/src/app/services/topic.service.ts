@@ -15,7 +15,8 @@ export class TopicService
     this.url = global.url;
   }
 
-  saveTopic(topic: any , token: any): Observable<any> {
+  saveTopic(topic: any , token: any): Observable<any> 
+  {
     let params = JSON.stringify(topic);
 
     let headers = new HttpHeaders().set('Content-Type','application/json')
@@ -24,10 +25,27 @@ export class TopicService
     return this._http.post(this.url + 'topic', params,{headers});
   }
 
+  editarTopic(topic: any , token: any, ide:any): Observable<any> 
+  {
+    let params = JSON.stringify(topic);
+
+    let headers = new HttpHeaders().set('Content-Type','application/json')
+                                   .set('Authorization', token);
+                                   
+    return this._http.put(`${this.url}/update/${ide}`, params,{headers});
+  }
+
   getTopics(id: any): Observable <any>
   {
     let headers = new HttpHeaders().set('Content-Type','application/json')
 
     return this._http.get(`${this.url}/user-topics/${id}`,{headers});
+  }
+
+  getTopicsByID(id: any): Observable <any>
+  {
+    let headers = new HttpHeaders().set('Content-Type','application/json')
+
+    return this._http.get(`${this.url}/topic/${id}`,{headers});
   }
 }

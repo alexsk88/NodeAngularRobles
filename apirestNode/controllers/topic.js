@@ -176,6 +176,7 @@ var controller =
             if(err)
             {
                 return response.status(500).send({
+                    status: 'error',
                     messague: 'Error con el servidor',
                     type: 'Erro al sacar el TOPIC'
                 });
@@ -184,13 +185,15 @@ var controller =
             if(Topic)
             {
                 return response.status(200).send({
-                    messague: 'success',
+                    status: 'success',
+                    messague: 'Topic Encontrado',
                     topic: Topic
                 });
             }
             else
             {
                 return response.status(404).send({
+                    status: 'error',
                     messague: 'El Topics no existe'
                 });
             }
@@ -219,6 +222,7 @@ var controller =
         catch
         {
             return response.status(200).send({
+                status: 'error',
                 messague: 'Faltan datos por Enviar'
             });
         }
@@ -248,6 +252,7 @@ var controller =
                         if(err)
                         {
                             return response.status(500).send({
+                                status: 'error',
                                 messague: 'Error con el servidor',
                                 type: 'Erro al Update el TOPIC'
                             });
@@ -269,6 +274,7 @@ var controller =
                 {
                     //console.log("No son oiguales");
                     return response.status(400).send({
+                        status: 'error',
                         messague: 'No eres el dueño del Post'
                     });
                 }
@@ -278,6 +284,7 @@ var controller =
         else
         {
             return response.status(200).send({
+                status: 'error',
                 messague: 'Datos No Validos',
             });
         }
