@@ -1,11 +1,11 @@
-<div class="col-md-12 my-5">
+<div class="col-md-12 my-5 animated fadeInRightBig rapidoome">
     <h1>{{ page_title }}</h1>
     <hr>
 
     <ul class="list-group list-topics">
         <li class="list-group-item" *ngFor="let topic of topics">
             <h4>
-                <a [routerLink]="[ '/home']">
+                <a [routerLink]="[ '/tema', topic._id]">
                     {{ topic.title }}
                 </a>
             </h4>

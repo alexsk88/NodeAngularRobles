@@ -66,7 +66,7 @@ export class TopicsComponent implements OnInit
           {
              number_pages.push(i);
           }
-          console.log("for dijo", number_pages);
+          //console.log("for dijo", number_pages);
 
           this.number_pages = number_pages;
 

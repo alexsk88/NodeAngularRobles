@@ -1,0 +1,35 @@
+<div class="col-lg-12 topic-box animated fadeInRightBig rapidoome" *ngIf="topic; else loaD">
+    <div class="col-lg-8 topic-data">
+       <h1> {{ topic.title }} </h1>
+       <span class="badge badge-warning mr-2" *ngIf="topic.lang">
+            {{ topic.lang}}
+        </span>
+       <span class="badge badge-primary">
+            {{ topic.user.name + ' ' + topic.user.surname }}
+        </span>
+        <span class="badge badge-light ml-2"> 
+            {{ topic.date | amLocale: 'es' | amTimeAgo }}
+        </span>
+
+        <p id="topic-content" class="mt-2">
+            {{ topic.content }}
+        </p>
+        <p id="topic-code" class="mt-2" *ngIf="topic.code">
+            {{ topic.code }}
+        </p>
+    </div> 
+
+</div>
+
+<ng-template #loaD>
+    <div *ngIf="topic != null">
+        <h4>Cargando</h4>
+        <img src="assets/img/flechacircle.svg" width="40" height="40" 
+        alt="img Chargued" class="w3-spin"> 
+    </div>
+    <div *ngIf="noexist" class="animated bounce faster">
+       <div class="alert alert-danger">
+           El Tema no Existe
+       </div> 
+    </div>
+</ng-template>

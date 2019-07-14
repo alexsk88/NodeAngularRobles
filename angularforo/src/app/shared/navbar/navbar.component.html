@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" [routerLink]="['home']">
         <img src="/assets/img/logo.png" width="40" height="40" class="d-inline-block align-top"
              alt=""/>
         Foro B
@@ -14,10 +14,10 @@
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" [routerLink]="['home']">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['temas']">Ver Temas</a>
+                <a class="nav-link" [routerLink]="['temas',1]">Ver Temas</a>
             </li>
             
             <li class="nav-item" *ngIf="identity != null">
