@@ -24,6 +24,7 @@ import { TopicsComponent } from './components/topics/topics.component';
 import { TopicDetailComponent } from './components/topic-detail/topic-detail.component';
 import { UsuarioService } from './services/usuario.service';
 import { UserGuard } from './services/user.guard';
+import { NoIdentityGuard } from './services/no.identity.guard';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { UserGuard } from './services/user.guard';
   providers: [
     appRoutingProviders,
     UsuarioService,
-    UserGuard
+    UserGuard,
+    NoIdentityGuard
   ],
   bootstrap: [AppComponent]
 })
