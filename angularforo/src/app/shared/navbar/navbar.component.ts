@@ -45,7 +45,7 @@ export class NavbarComponent implements OnInit, DoCheck {
 
   buscar(text:any)
   {
-   
+    this._router.navigate(['buscar',text]);
   }
 
 

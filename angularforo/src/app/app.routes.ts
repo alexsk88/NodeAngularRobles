@@ -11,6 +11,7 @@ import { UserGuard } from './services/user.guard';
 import { NoIdentityGuard } from './services/no.identity.guard';
 import { UsersComponent } from './componentes/users/users.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
+import { BuscarComponent } from './componentes/buscar/buscar.component';
 
 
 
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: 'registro', canActivate:[NoIdentityGuard],component: RegisterComponent },
     { path: 'perfil/:id',component: PerfilComponent },
     { path: 'temas/:page', component: TopicsComponent },
+    { path: 'buscar/:text', component: BuscarComponent },
     { path: 'usuarios', component: UsersComponent },
     { path: 'tema/:id', component: TopicDetailComponent },
     { path: '**', component: PageNotFoundComponent },

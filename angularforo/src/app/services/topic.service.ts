@@ -63,4 +63,9 @@ export class TopicService
   {
     return this._http.get(`${this.url}/topics/${page}`);
   }
+
+  busqueda(text: any): Observable <any>
+  {
+    return this._http.get(`${this.url}/search/${text}`);
+  }
 }

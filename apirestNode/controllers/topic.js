@@ -357,6 +357,7 @@ var controller =
             {'code': {'$regex': palabra, '$options': 'i'} },
             {'lang': {'$regex': palabra, '$options': 'i'} },
         ]})
+        .populate('user')
         .sort([['date', 'descending']])
         .exec((err, topics)=>{
             if(err)
