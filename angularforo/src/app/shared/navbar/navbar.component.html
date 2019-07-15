@@ -25,7 +25,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">Compañeros</a>
+                <a class="nav-link" [routerLink]="['usuarios']">Compañeros</a>
             </li>
 
             <li class="nav-item pl-5">
@@ -67,7 +67,7 @@
                     </i>
                     Panel de Usuario
                 </a>
-                <a class="pointer dropdown-item" href="#">
+                <a class="pointer dropdown-item"  [routerLink]="['/perfil', identity._id]">
                     <i class="material-icons iconspacee">
                         person_pin
                     </i>

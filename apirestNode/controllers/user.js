@@ -497,6 +497,7 @@ var controller =
             if(err)
             {
                 return response.status(500).send({
+                    status: 'error',
                     message: 'Error con el servidor',
                     type: 'Error al sacar User con MongoDB'
                 });
@@ -504,7 +505,8 @@ var controller =
             else
             {
                 return response.status(200).send({
-                    message: 'success',
+                    status: 'success',
+                    message: 'usuarios Listados',
                     users
                 });
             }
@@ -522,13 +524,15 @@ var controller =
             if(user)
             {
                 return response.status(200).send({
-                    message: 'success',
+                    status: 'success',
+                    message: 'Usuario conseguido',
                     user
                 });
             }
             else
             {
                 return response.status(404).send({
+                    status: 'error',
                     message: 'usuario no encontrado'
                 });
             }

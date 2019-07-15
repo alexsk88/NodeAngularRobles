@@ -10,6 +10,7 @@
   cursor: pointer;
 }
 
+
 .avatar_mask
 {
     height: 40px;
@@ -22,7 +23,18 @@
 {
     height: 40px;
 }
+.avatar_mask_profiles
+{
+    height: 70px;
+    width: 70px;
+    border-radius: 900px;
+    overflow: hidden;
+}
 
+.avatar_mask_profiles img
+{
+    height: 70px;
+}
 .opcionespanel a:hover 
 {
   text-decoration: none !important;

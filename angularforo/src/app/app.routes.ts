@@ -9,6 +9,8 @@ import { TopicsComponent } from './components/topics/topics.component';
 import { TopicDetailComponent } from './components/topic-detail/topic-detail.component';
 import { UserGuard } from './services/user.guard';
 import { NoIdentityGuard } from './services/no.identity.guard';
+import { UsersComponent } from './componentes/users/users.component';
+import { PerfilComponent } from './componentes/perfil/perfil.component';
 
 
 
@@ -18,7 +20,9 @@ const routes: Routes = [
     { path: 'ajustes', canActivate:[UserGuard],component: UserEditComponent },
     { path: 'login', canActivate:[NoIdentityGuard],component: LoginComponent },
     { path: 'registro', canActivate:[NoIdentityGuard],component: RegisterComponent },
-    { path: 'temas/:page', component: TopicsComponent, },
+    { path: 'perfil/:id',component: PerfilComponent },
+    { path: 'temas/:page', component: TopicsComponent },
+    { path: 'usuarios', component: UsersComponent },
     { path: 'tema/:id', component: TopicDetailComponent },
     { path: '**', component: PageNotFoundComponent },
 ];

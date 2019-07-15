@@ -25,6 +25,9 @@ import { TopicDetailComponent } from './components/topic-detail/topic-detail.com
 import { UsuarioService } from './services/usuario.service';
 import { UserGuard } from './services/user.guard';
 import { NoIdentityGuard } from './services/no.identity.guard';
+import { UsersComponent } from './componentes/users/users.component';
+import { PerfilComponent } from './componentes/perfil/perfil.component';
+import { BuscarComponent } from './componentes/buscar/buscar.component';
 
 
 @NgModule({
@@ -38,6 +41,9 @@ import { NoIdentityGuard } from './services/no.identity.guard';
     UserEditComponent,
     TopicsComponent,
     TopicDetailComponent,
+    UsersComponent,
+    PerfilComponent,
+    BuscarComponent,
   ],
   imports: [
     BrowserModule,

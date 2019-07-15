@@ -89,4 +89,14 @@ export class UsuarioService
     return this._http.put(this.url+'update', params ,{headers});               
 
   }
+
+  getUsers(): Observable <any> 
+  {
+    return this._http.get(this.url+'users');
+  }
+
+  getUser(id: any): Observable <any> 
+  {
+    return this._http.get(`${this.url}/user/${id}`);
+  } 
 }
